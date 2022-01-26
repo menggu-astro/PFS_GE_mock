@@ -1,3 +1,9 @@
+# The code is used to generate noise free models
+# with Prospector (alpha version)
+# Parameters came from 
+# `prospector_3dhst_bestfit_catalog.pickle`.
+# There are 63413 objects.
+
 import pickle, sys, os
 import numpy as np
 import pandas as pd
@@ -46,7 +52,7 @@ def est_afe(logmstar, logssfr):
     else:
         return Choi_2014(logmstar)
 est_afe = np.vectorize(est_afe)
-
+# -------------------------------- #
 
 if __name__=='__main__':
     # ---- load 3dhst catalog ---- #
@@ -94,7 +100,7 @@ if __name__=='__main__':
         obs['wavelength'] = None
     
 
-    
+    """
     theta_all_dict = {}
     for iparams in ['logzsol', 'dust2', 'logsfr_ratios_1', 
                     'logsfr_ratios_2', 'logsfr_ratios_3', 
@@ -120,6 +126,7 @@ if __name__=='__main__':
     theta_all_df = pd.DataFrame.from_dict(theta_all_dict)
     theta_all_df = theta_all_df.reindex(columns=mod.theta_labels())
     theta_all_df.to_csv('theta_all.csv')
+    """
     
     theta_all_df = pd.read_csv('theta_all.csv')  
     theta_all_df = theta_all_df.reindex(columns=mod.theta_labels())
@@ -130,7 +137,7 @@ if __name__=='__main__':
     noise_free_output['phot'] = np.zeros(shape=(63413, 9)) + np.nan
     noise_free_output['sm'] = np.zeros(63413) + np.nan
 
-    for i in range(10):
+    for i in range(63413):
         if i%1000==0:
             print(i, end=',')
         obs['redshift'] = float(theta_all_df['zred'][i])

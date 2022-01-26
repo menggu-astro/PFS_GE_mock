@@ -70,7 +70,7 @@ def build_obs(objname='PFS_qu', add_err=True, zred=1.4,
     ### SPECTRUM
     hdu = fits.open('../input/noise_spec_12hr.fits')
     wave_obs = hdu[1].data['WAV']
-    detector_noise = hdu[1].data['ERR']/1e-23/3631 * wave_obs**2/(3e18) # erg/s/cm^2/A
+    detector_noise = hdu[1].data['ERR']/1e-23/3631 * (wave_obs**2/(3e18)) # erg/s/cm^2/A
 
     ### Remove repeated wavelength values
     print('REMOVING REPEATED WAVELENGTH VALUES')
