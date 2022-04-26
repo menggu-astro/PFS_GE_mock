@@ -93,6 +93,7 @@ if __name__=='__main__':
     noisy_mock_all = []
     filecount = 0
     for i in range(63413):
+
         # Units of maggies (Janskies divided by 3631)
         spec = np.copy(noise_free['spec'][i]) 
         flux = np.copy(noise_free['phot'][i])
@@ -143,9 +144,15 @@ if __name__=='__main__':
         if i%5000==0 and i!=0:
             print('saving output')
             filecount +=1
-            with open('mockspec_noise_{0}.pickle'.format(filecount), 'wb') as handle:
-                pickle.dump(noisy_mock_all, handle, protocol=pickle.HIGHEST_PROTOCOL)
+            #with open('mockspec_noise_{0}.pickle'.format(filecount), 'wb') as handle:
+            #    pickle.dump(noisy_mock_all, handle, protocol=pickle.HIGHEST_PROTOCOL)
+            
             noisy_mock_all = []
+            print(i, len(noisy_mock_all), filecount)
+    filecount +=1
+    #with open('mockspec_noise_{0}.pickle'.format(filecount), 'wb') as handle:
+    #            pickle.dump(noisy_mock_all, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    print(i, (noisy_mock_all), filecount)
 
 
 

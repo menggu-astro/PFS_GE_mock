@@ -302,6 +302,14 @@ def build_model(objname='PFS_qu', add_duste=True, add_neb=True, add_agn=True, mi
             model_params['nebemlineinspec']['init'] = True
     else:
         model_params['nebemlineinspec']['init'] = False
+        
+        
+    # -- add on Apr 26 for PFS emis updates by M Gu -- #
+    model_params["add_neb_emission"]["init"] = True
+    model_params["nebemlineinspec"]["init"] = False
+    # -------------------------------------------------#
+        
+        
 
     # This removes the continuum from the spectroscopy. Highly recommend
     # using when modeling both photometry & spectroscopy
